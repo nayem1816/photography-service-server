@@ -89,3 +89,23 @@ exports.UpdateProduct = (req, res) => {
         }
     });
 };
+
+exports.GetProductById = (req, res) => {
+    const id = req.params.id;
+
+    ProductModel.findById(id, (err, data) => {
+        if (err) {
+            res.status(500).json({
+                status: 'fail',
+                message: 'Error in getting product',
+                data: err,
+            });
+        } else {
+            res.status(200).json({
+                status: 'success',
+                message: 'Product get successfully',
+                data: data,
+            });
+        }
+    });
+};
